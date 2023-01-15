@@ -9,21 +9,21 @@ but who doens't like a little abstraction to make the day?
 
 ```js
 const Friends = () => {
-  const [
-    { add, remove },
-    { value, error },
-  ] = useFieldArray('friends');
-  return (
-    <Fragment>
-      {value.map((f, i) => (
-        <Fragment key={f.id}>
-          <StringField fieldId={`friends[${i}].name`} />
-          <button onClick={() => remove(i)}>Remove friend</button>
-        </Fragment>
-      ))}
-      <button onClick={() => add({ id: value.length })}>Add friend</button>
-    </Fragment>
-  )
+	const [
+		{ add, remove },
+		{ value, error },
+	] = useFieldArray('friends');
+	return (
+		<Fragment>
+			{value.map((f, i) => (
+				<Fragment key={f.id}>
+					<StringField fieldId={`friends[${i}].name`} />
+					<button onClick={() => remove(i)}>Remove friend</button>
+				</Fragment>
+			))}
+			<button onClick={() => add({ id: value.length })}>Add friend</button>
+		</Fragment>
+	);
 };
 ```
 

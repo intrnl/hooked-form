@@ -15,13 +15,13 @@ triggered with the new `value` and the [context](./useFormConnect.md) as argumen
 
 ```jsx
 const MyComponent = () => {
-  useSpy('age', (newAge, { setFieldError }) => {
-    if (newAge < 18) {
-      setFieldError('age', 'you must be 18 or older');
-    }
-  });
-  return <div>Irrelevant</div>;
-}
+	useSpy('age', (newAge, { setFieldError }) => {
+		if (newAge < 18) {
+			setFieldError('age', 'you must be 18 or older');
+		}
+	});
+	return <div>Irrelevant</div>;
+};
 ```
 
 The example can be done with `validate` too but this can also hide/show elements this way by calling

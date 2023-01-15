@@ -9,51 +9,51 @@
 // site configuration options.
 
 const siteConfig = {
-  title: 'Hooked-Form',
-  tagline: "You will get hooked.",
-  url: 'https://jovidecroock.github.io',
-  baseUrl: '/Hooked-Form/',
-  projectName: 'Hooked-Form',
-  organizationName: 'jovidecroock',
+	title: 'Hooked-Form',
+	tagline: 'You will get hooked.',
+	url: 'https://jovidecroock.github.io',
+	baseUrl: '/Hooked-Form/',
+	projectName: 'Hooked-Form',
+	organizationName: 'jovidecroock',
 
-  // For no header links in the top nav bar -> headerLinks: [],
-  headerLinks: [
-    { doc: 'components/form', label: 'API' },
-  ],
+	// For no header links in the top nav bar -> headerLinks: [],
+	headerLinks: [
+		{ doc: 'components/form', label: 'API' },
+	],
 
-  /* path to images for header/footer */
-  headerIcon: 'img/logo.png',
-  footerIcon: 'img/logo.png',
-  favicon: 'img/favicon.png',
+	/* path to images for header/footer */
+	headerIcon: 'img/logo.png',
+	footerIcon: 'img/logo.png',
+	favicon: 'img/favicon.png',
 
-  /* Colors for website */
-  colors: {
-    primaryColor: '#2d7c85',
-    secondaryColor: '#204f5c',
-  },
+	/* Colors for website */
+	colors: {
+		primaryColor: '#2d7c85',
+		secondaryColor: '#204f5c',
+	},
 
-  // This copyright info is used in /core/Footer.js and blog RSS/Atom feeds.
-  copyright: `Copyright © ${new Date().getFullYear()} Jovi De Croock`,
+	// This copyright info is used in /core/Footer.js and blog RSS/Atom feeds.
+	copyright: `Copyright © ${new Date().getFullYear()} Jovi De Croock`,
 
-  highlight: {
-    // Highlight.js theme to use for syntax highlighting in code blocks.
-    theme: 'default',
-  },
+	highlight: {
+		// Highlight.js theme to use for syntax highlighting in code blocks.
+		theme: 'default',
+	},
 
-  // Add custom scripts here that would be placed in <script> tags.
-  scripts: ['https://buttons.github.io/buttons.js'],
+	// Add custom scripts here that would be placed in <script> tags.
+	scripts: ['https://buttons.github.io/buttons.js'],
 
-  // On page navigation for the current documentation page.
-  onPageNav: 'separate',
-  cleanUrl: true,
+	// On page navigation for the current documentation page.
+	onPageNav: 'separate',
+	cleanUrl: true,
 
-  // Open Graph and Twitter card images.
-  ogImage: 'img/logo.png',
-  twitterImage: 'img/logo.png',
+	// Open Graph and Twitter card images.
+	ogImage: 'img/logo.png',
+	twitterImage: 'img/logo.png',
 
-  // You may provide arbitrary config keys to be used as needed by your
-  // template. For example, if you need your repo's URL...
-  repoUrl: 'https://github.com/JoviDeCroock/Hooked-Form',
+	// You may provide arbitrary config keys to be used as needed by your
+	// template. For example, if you need your repo's URL...
+	repoUrl: 'https://github.com/JoviDeCroock/Hooked-Form',
 };
 
 module.exports = siteConfig;

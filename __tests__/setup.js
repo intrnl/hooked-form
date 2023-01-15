@@ -1,2 +1,2 @@
 console.warn = jest.fn();
-console.error = jest.fn()
+console.error = jest.fn();

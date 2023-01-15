@@ -9,13 +9,13 @@ control the values on a field.
 
 ```js
 const StringField = ({ fieldId }) => {
-  const [{ onChange, onBlur, onFocus }, { value, touched, error }] = useField(fieldId);
-  return (
-    <Fragment>
-      <input onBlur={onBlur} onFocus={onFocus} onChange={e => onChange(e.target.value)} value={value} />
-      {touched && error && <p>{error}</p>}
-    </Fragment>
-  )
+	const [{ onChange, onBlur, onFocus }, { value, touched, error }] = useField(fieldId);
+	return (
+		<Fragment>
+			<input onBlur={onBlur} onFocus={onFocus} onChange={(e) => onChange(e.target.value)} value={value} />
+			{touched && error && <p>{error}</p>}
+		</Fragment>
+	);
 };
 ```
 
@@ -35,13 +35,16 @@ The `useField` hook accepts a second argument, a validation function.
 
 ```js
 const StringField = ({ fieldId }) => {
-  const [{ onChange, onBlur, onFocus }, { value, touched, error }] = useField(fieldId, (value) => value === 'x' ? 'error': undefined);
-  return (
-    <Fragment>
-      <input onBlur={onBlur} onFocus={onFocus} onChange={e => onChange(e.target.value)} value={value} />
-      {touched && error && <p>{error}</p>}
-    </Fragment>
-  )
+	const [{ onChange, onBlur, onFocus }, { value, touched, error }] = useField(
+		fieldId,
+		(value) => value === 'x' ? 'error' : undefined,
+	);
+	return (
+		<Fragment>
+			<input onBlur={onBlur} onFocus={onFocus} onChange={(e) => onChange(e.target.value)} value={value} />
+			{touched && error && <p>{error}</p>}
+		</Fragment>
+	);
 };
 ```
 

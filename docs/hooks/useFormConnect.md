@@ -8,7 +8,7 @@ This hook will return you the current `context` and be updated on every change
 within that context.
 
 | name            | type-signature                              | description                                         |
-|-----------------|---------------------------------------------|-----------------------------------------------------|
+| --------------- | ------------------------------------------- | --------------------------------------------------- |
 | errors          | object                                      | The current errors in your form                     |
 | formError       | string                                      | The current formError                               |
 | isSubmitting    | boolean                                     | The state of your submit                            |

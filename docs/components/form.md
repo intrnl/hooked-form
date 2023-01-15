@@ -26,17 +26,15 @@ For generics check the staticTyping chapter part.
 ## Example
 
 ```js
-import React from 'react';
 import { Form } from 'hooked-form';
+import React from 'react';
 
-const FormComponent = ({ handleSubmit }) => (
-  <form onSubmit={handleSubmit} />
-);
+const FormComponent = ({ handleSubmit }) => <form onSubmit={handleSubmit} />;
 
 export default Form({
-  onSubmit: console.log(values),
-  mapPropsToValues: (props) => ({
-    name: props.name,
-  })
+	onSubmit: console.log(values),
+	mapPropsToValues: (props) => ({
+		name: props.name,
+	}),
 })(FormComponent);
 ```

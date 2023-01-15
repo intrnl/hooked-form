@@ -20,13 +20,13 @@ relevant parts.
 **yarn**
 
 ```bash
-  yarn add hooked-form
+yarn add hooked-form
 ```
 
 **npm**
 
 ```bash
-  npm i --save hooked-form
+npm i --save hooked-form
 ```
 
 **UMD**
@@ -40,36 +40,36 @@ _dev_:
 ## 🎨 Example
 
 ```jsx
-import React from 'react';
 import { HookedForm, useField } from 'hooked-form';
+import React from 'react';
 
 const StringField = ({ fieldId, label }) => {
-  const [{ onChange }, { touched, error, value }] = useField(fieldId);
-  const onInput = React.useCallback(e => onChange(e.currentTarget.value), [
-    onChange,
-  ]);
-  return (
-    <label>
-      {label + ' '}
-      <input value={value} onChange={onInput} />
-      {touched && error && <div>{error}</div>}
-    </label>
-  );
+	const [{ onChange }, { touched, error, value }] = useField(fieldId);
+	const onInput = React.useCallback((e) => onChange(e.currentTarget.value), [
+		onChange,
+	]);
+	return (
+		<label>
+			{label + ' '}
+			<input value={value} onChange={onInput} />
+			{touched && error && <div>{error}</div>}
+		</label>
+	);
 };
 
 const App = () => {
-  return (
-    <HookedForm
-      onSubmit={console.log}
-      validateOnBlur
-      initialValues={React.useMemo(() => ({ name: '' }), [])}
-      validate={values => (values.name ? {} : { name: 'Required' })}
-    >
-      <h3>Hooked Form</h3>
-      <StringField label="Name:" fieldId="name" />
-      <input type="submit" value="Submit" />
-    </HookedForm>
-  );
+	return (
+		<HookedForm
+			onSubmit={console.log}
+			validateOnBlur
+			initialValues={React.useMemo(() => ({ name: '' }), [])}
+			validate={(values) => (values.name ? {} : { name: 'Required' })}
+		>
+			<h3>Hooked Form</h3>
+			<StringField label='Name:' fieldId='name' />
+			<input type='submit' value='Submit' />
+		</HookedForm>
+	);
 };
 
 render(<App />, document.body);
@@ -83,19 +83,19 @@ So if you don't plan to target older browsers feel free to use this.
 ### Webpack
 
 ```json
-  "resolve": {
-    "alias": {
-      "hooked-form": "hooked-form/dist/hooked-form.modern.js"
-    }
+"resolve": {
+  "alias": {
+    "hooked-form": "hooked-form/dist/hooked-form.modern.js"
   }
+}
 ```
 
 ### Parcel
 
 ```json
-  "alias": {
-    "hooked-form": "hooked-form/dist/hooked-form.modern.js"
-  }
+"alias": {
+  "hooked-form": "hooked-form/dist/hooked-form.modern.js"
+}
 ```
 
 ## 📢 Credits
