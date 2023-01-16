@@ -213,7 +213,6 @@ const HookedForm = <Values extends object>({
 	}, [
 		validateOnBlur === undefined ? touched : validateOnBlur && touched,
 		validateOnChange && values,
-		isDirty.current,
 	]);
 
 	const change = (fieldId: string, value: any) => {
