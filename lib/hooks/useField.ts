@@ -31,15 +31,16 @@ const useField = <T = any>(
 	const ctx = useContextEmitter(fieldId) as PrivateFormHookContext;
 
 	useEffect(() => {
-		const tuple: ValidationTuple = [fieldId, validate as (v: any) => string];
 		if (validate) {
+			const tuple: ValidationTuple = [fieldId, validate as (v: any) => string];
 			ctx._fieldValidators.push(tuple);
-		}
-		return () => {
-			if (validate) {
+
+			return () => {
 				ctx._fieldValidators.splice(ctx._fieldValidators.indexOf(tuple), 1);
-			}
-		};
+			};
+		}
+
+		return;
 	}, [fieldId]);
 
 	return {
