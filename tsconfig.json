@@ -21,6 +21,6 @@
 		"lib": ["es2015", "dom"]
 	},
 	"exclude": ["__tests__/**/*"],
-	"include": ["src/**/*"],
-	"files": ["src/index.ts"]
+	"include": ["lib/**/*"],
+	"files": ["lib/index.ts"]
 }
