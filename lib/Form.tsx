@@ -43,7 +43,7 @@ export interface Payload {
 	resetForm: () => void;
 }
 
-export interface FormOptions<T> extends Omit<React.HTMLProps<HTMLFormElement>, 'onSubmit' | 'onError'> {
+export interface HookedFormProps<T> {
 	children?: ((form: Payload) => React.ReactNode) | React.ReactNode;
 	enableReinitialize?: boolean;
 	initialErrors?: Errors;
@@ -58,7 +58,7 @@ export interface FormOptions<T> extends Omit<React.HTMLProps<HTMLFormElement>, '
 	validateOnChange?: boolean;
 }
 
-const Form = <Values extends object>({
+const HookedForm = <Values extends object>({
 	children,
 	enableReinitialize,
 	initialErrors,
@@ -70,7 +70,7 @@ const Form = <Values extends object>({
 	shouldSubmitWhenInvalid,
 	validateOnBlur,
 	validateOnChange,
-}: FormOptions<Values>) => {
+}: HookedFormProps<Values>) => {
 	const fieldValidators = React.useRef<ValidationTuple[]>([]);
 	const isDirty = React.useRef(false);
 	const emitter = React.useMemo(createEmitter, []);
@@ -265,4 +265,4 @@ const Form = <Values extends object>({
 	);
 };
 
-export default Form;
+export default HookedForm;

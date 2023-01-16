@@ -1,4 +1,4 @@
-export { default as HookedForm } from './Form';
+export { default as HookedForm, type HookedFormProps } from './Form';
 export { default as useError } from './hooks/useError';
 export { default as useField, type UseFieldProps, type UseFieldReturn } from './hooks/useField';
 export { default as useFieldArray, type UseFieldArrayReturn } from './hooks/useFieldArray';
