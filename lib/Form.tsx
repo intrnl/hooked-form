@@ -96,8 +96,9 @@ const HookedForm = <Values extends object>({
 	const validateForm = () => {
 		let validationErrors = (validate && validate(values)) || EMPTY_OBJ;
 
-		fieldValidators.current.some((tuple) => {
+		fieldValidators.current.forEach((tuple) => {
 			const error = tuple[1](get(values, tuple[0]));
+
 			if (error) {
 				validationErrors = set(validationErrors, tuple[0], error);
 			}
@@ -114,6 +115,8 @@ const HookedForm = <Values extends object>({
 			&& JSON.stringify(errors) !== JSON.stringify(validationErrors)
 		) {
 			setErrors(e.current = validationErrors as Errors);
+			setTouched(t.current = deriveInitial(validationErrors, true));
+
 			emitter._emit(
 				([] as Array<string>).concat(
 					deriveKeys(validationErrors),
@@ -128,6 +131,7 @@ const HookedForm = <Values extends object>({
 	const resetForm = () => {
 		isDirty.current = false;
 		setValues(v.current = initialValues || EMPTY_OBJ);
+
 		if (initialErrors) {
 			setTouched(t.current = deriveInitial(initialErrors, true));
 			setErrors(e.current = initialErrors);
