@@ -12,7 +12,8 @@
 	"module": "./dist/hooked-form.module.js",
 	"types": "./dist/index.d.ts",
 	"scripts": {
-		"build": "vite build"
+		"build": "tsc && vite build",
+		"prepublishOnly": "pnpm run build"
 	},
 	"peerDependencies": {
 		"react": "17.0.2"
