@@ -59,10 +59,6 @@ const useField = <T = any>(
 		touched: get(ctx.touched, fieldId),
 		value: formatted,
 		onChange: (next: any) => {
-			if (next && next.target) {
-				next = next.target.value;
-			}
-
 			const parsed = parse ? parse(next, fieldId) : next;
 			ctx.setFieldValue(fieldId, parsed);
 		},
