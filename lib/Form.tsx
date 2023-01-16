@@ -64,14 +64,12 @@ const Form = <Values extends object>({
 	initialErrors,
 	initialValues,
 	onSubmit,
-	noForm,
 	validate,
 	onError,
 	onSuccess,
 	shouldSubmitWhenInvalid,
 	validateOnBlur,
 	validateOnChange,
-	...formProps // used to inject className, onKeyDown and related on the <form>
 }: FormOptions<Values>) => {
 	const fieldValidators = React.useRef<ValidationTuple[]>([]);
 	const isDirty = React.useRef(false);
@@ -221,17 +219,6 @@ const Form = <Values extends object>({
 		emitter._emit(fieldId);
 	};
 
-	const toRender = typeof children === 'function'
-		? children({
-			change,
-			formError: formErrorState[0],
-			isDirty: isDirty.current,
-			isSubmitting: submittingState[0],
-			handleSubmit,
-			resetForm,
-		})
-		: children;
-
 	return (
 		<formContext.Provider
 			value={{
@@ -264,15 +251,16 @@ const Form = <Values extends object>({
 				_getValues: () => v,
 			} as ArrayHookContext}
 		>
-			{noForm
-				? (
-					toRender
-				)
-				: (
-					<form onSubmit={handleSubmit} {...formProps}>
-						{toRender}
-					</form>
-				)}
+			{typeof children === 'function'
+				? children({
+					change,
+					formError: formErrorState[0],
+					isDirty: isDirty.current,
+					isSubmitting: submittingState[0],
+					handleSubmit,
+					resetForm,
+				})
+				: children}
 		</formContext.Provider>
 	);
 };
