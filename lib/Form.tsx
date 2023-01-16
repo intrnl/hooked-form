@@ -48,7 +48,6 @@ export interface HookedFormProps<T> {
 	enableReinitialize?: boolean;
 	initialErrors?: Errors;
 	initialValues?: Partial<T>;
-	noForm?: boolean;
 	onError?: (error: Error, callbag: ErrorBag) => void;
 	onSuccess?: (result: any, callbag: SuccessBag) => void;
 	onSubmit: (values: Partial<T>, callbag: CallBag) => Promise<any> | any;
