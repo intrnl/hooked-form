@@ -2,7 +2,7 @@ export interface Source {
 	[key: string]: any;
 }
 
-export function get (source: Source, key: any): any {
+export const get = (source: Source, key: any): any => {
 	// eslint-disable-next-line
 	let path = key.replace(/\[("|')?([^\[\]]+)\1\]/g, '.$2').split('.'),
 		index = 0;
@@ -12,23 +12,23 @@ export function get (source: Source, key: any): any {
 	}
 
 	return source;
-}
+};
 
-export function set (source: Source | Array<any>, key: string, value: any): any {
+export const set = (source: Source | Array<any>, key: string, value: any): any => {
 	return setHelper(
 		source,
 		value,
 		key.replace(/\[("|')?([^\[\]]+)\1\]/g, '.$2').split('.'),
 		0,
 	);
-}
+};
 
-function setHelper (
+const setHelper = (
 	source: Source | Array<any>,
 	value: any,
 	pathArray: Array<string>,
 	currentIndex: number,
-): any {
+): any => {
 	if (currentIndex >= pathArray.length) {
 		return value;
 	}
@@ -65,4 +65,4 @@ function setHelper (
 	return Object.assign({}, source, {
 		[pathArray[currentIndex]]: continuedPath,
 	});
-}
+};

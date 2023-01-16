@@ -1,7 +1,7 @@
-export function deriveInitial (
+export const deriveInitial = (
 	value: { [fieldId: string]: any },
 	defaultValue: any,
-): { [fieldId: string]: any } {
+): { [fieldId: string]: any } => {
 	const result: { [fieldId: string]: any } = {};
 
 	for (const key in value) {
@@ -21,4 +21,4 @@ export function deriveInitial (
 	}
 
 	return result;
-}
+};

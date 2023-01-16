@@ -4,7 +4,9 @@
 	"version": "4.3.4",
 	"author": "intrnl",
 	"license": "MIT",
-	"files": ["dist/"],
+	"files": [
+		"dist/"
+	],
 	"sideEffects": false,
 	"main": "./dist/hooked-form.js",
 	"module": "./dist/hooked-form.module.js",
@@ -16,7 +18,6 @@
 		"react": "17.0.2"
 	},
 	"devDependencies": {
-		"@testing-library/react": "9.5.0",
 		"@types/node": "^18.11.18",
 		"@types/react": "17.0.52",
 		"@types/react-dom": "17.0.18",
@@ -24,7 +25,7 @@
 		"dprint": "0.34.1",
 		"react": "17.0.2",
 		"react-dom": "17.0.2",
-		"typescript": "3.8.3",
+		"typescript": "4.9.4",
 		"vite": "4.0.4",
 		"vite-plugin-dts": "^1.7.1"
 	}

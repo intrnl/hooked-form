@@ -12,8 +12,10 @@ import {
 } from './types';
 
 const EMPTY_OBJ = {};
+
 export const formContext = React.createContext<FormHookContext>(
 	EMPTY_OBJ as FormHookContext,
+	// @ts-expect-error
 	() => 0,
 );
 

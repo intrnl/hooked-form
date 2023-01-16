@@ -3,7 +3,7 @@ import { get } from '../helpers/operations';
 import { FormHookContext } from '../types';
 import { useContextEmitter } from './useContextEmitter';
 
-export interface FieldInformation<T> {
+export interface UseFieldSpyReturn<T> {
 	error: string;
 	touched: boolean;
 	value: T;
@@ -14,7 +14,7 @@ export type SpyCallback<T> = (newValue: T, ctx: FormHookContext) => void;
 const useSpy = <T = any>(
 	fieldId: string,
 	cb?: SpyCallback<T>,
-): FieldInformation<T> => {
+): UseFieldSpyReturn<T> => {
 	const isMounted = React.useRef<boolean>(false);
 	const ctx = useContextEmitter(fieldId);
 	const value = get(ctx.values, fieldId);

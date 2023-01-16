@@ -1,7 +1,7 @@
 export { default as HookedForm } from './Form';
 export { default as Form } from './FormHoc';
 export { default as useError } from './hooks/useError';
-export { default as useField } from './hooks/useField';
-export { default as useFieldArray } from './hooks/useFieldArray';
+export { default as useField, type UseFieldProps, type UseFieldReturn } from './hooks/useField';
+export { default as useFieldArray, type UseFieldArrayReturn } from './hooks/useFieldArray';
 export { default as useFormConnect } from './hooks/useFormConnect';
-export { default as useSpy } from './hooks/useSpy';
+export { default as useSpy, type UseFieldSpyReturn } from './hooks/useSpy';

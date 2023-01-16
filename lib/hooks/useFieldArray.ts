@@ -2,7 +2,7 @@ import { get } from '../helpers/operations';
 import { ArrayHookContext } from '../types';
 import { useContextEmitter } from './useContextEmitter';
 
-export interface FieldArrayReturn<T> {
+export interface UseFieldArrayReturn<T> {
 	error: string | null;
 	value: T[];
 	add: (item: T) => void;
@@ -15,7 +15,7 @@ export interface FieldArrayReturn<T> {
 
 const useFieldArray = <T = any>(
 	fieldId: string,
-): FieldArrayReturn<T> => {
+): UseFieldArrayReturn<T> => {
 	if (
 		process.env.NODE_ENV !== 'production'
 		&& (!fieldId || typeof fieldId !== 'string')

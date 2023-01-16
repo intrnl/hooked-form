@@ -6,7 +6,7 @@ import {
 } from '../types';
 import { useContextEmitter } from './useContextEmitter';
 
-export interface FieldReturn<T> {
+export interface UseFieldReturn<T> {
 	error: string;
 	touched: boolean;
 	value: T;
@@ -15,10 +15,16 @@ export interface FieldReturn<T> {
 	onFocus: () => void;
 }
 
+export interface UseFieldProps<T> {
+	format?: (value: T, fieldId: string) => any;
+	parse?: (value: any, fieldId: string) => T;
+	validate?: (value: T) => string | boolean | undefined;
+}
+
 const useField = <T = any>(
 	fieldId: string,
-	validate?: (value: T) => string | undefined,
-): FieldReturn<T> => {
+	props: UseFieldProps<T>,
+): UseFieldReturn<T> => {
 	if (
 		process.env.NODE_ENV !== 'production'
 		&& (!fieldId || typeof fieldId !== 'string')
@@ -28,7 +34,12 @@ const useField = <T = any>(
 		);
 	}
 
+	const { format, parse, validate } = props;
+
 	const ctx = useContextEmitter(fieldId) as PrivateFormHookContext;
+
+	const value = get(ctx.values, fieldId);
+	const formatted = format ? format(value, fieldId) : value === undefined ? '' : value;
 
 	useEffect(() => {
 		if (validate) {
@@ -46,16 +57,17 @@ const useField = <T = any>(
 	return {
 		error: get(ctx.errors, fieldId),
 		touched: get(ctx.touched, fieldId),
-		value: get(ctx.values, fieldId) || '',
-		onBlur: () => {
-			ctx.setFieldTouched(fieldId, true);
+		value: formatted,
+		onChange: (next: any) => {
+			if (next && next.target) {
+				next = next.target.value;
+			}
+
+			const parsed = parse ? parse(next, fieldId) : next;
+			ctx.setFieldValue(fieldId, parsed);
 		},
-		onChange: (value: T) => {
-			ctx.setFieldValue(fieldId, value);
-		},
-		onFocus: () => {
-			ctx.setFieldTouched(fieldId, false);
-		},
+		onFocus: () => ctx.setFieldTouched(fieldId, false),
+		onBlur: () => ctx.setFieldTouched(fieldId, true),
 	};
 };
 
