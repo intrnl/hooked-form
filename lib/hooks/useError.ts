@@ -1,7 +1,7 @@
 import { get } from '../helpers/operations';
 import { useContextEmitter } from './useContextEmitter';
 
-export default function useError (fieldId: string): string | null {
+const useError = (fieldId: string): string | null => {
 	if (
 		process.env.NODE_ENV !== 'production'
 		&& (!fieldId || typeof fieldId !== 'string')
@@ -12,4 +12,6 @@ export default function useError (fieldId: string): string | null {
 	}
 
 	return get(useContextEmitter(fieldId).errors, fieldId);
-}
+};
+
+export default useError;

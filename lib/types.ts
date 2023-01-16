@@ -39,9 +39,3 @@ export type ArrayHookContext = PrivateFormHookContext & {
 	_getTouched: () => { current: Touched };
 	_getValues: () => { current: Values };
 };
-
-export interface FieldInformation<T> {
-	error: string;
-	touched: boolean;
-	value: T;
-}

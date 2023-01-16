@@ -1,12 +1,10 @@
 import { useEffect } from 'react';
 import { get } from '../helpers/operations';
 import {
-	FieldInformation,
 	PrivateFormHookContext,
 	ValidationTuple,
 } from '../types';
 import { useContextEmitter } from './useContextEmitter';
-
 
 export interface FieldReturn<T> {
 	error: string;
@@ -17,10 +15,10 @@ export interface FieldReturn<T> {
 	onFocus: () => void;
 }
 
-export default function useField<T = any> (
+const useField = <T = any>(
 	fieldId: string,
 	validate?: (value: T) => string | undefined,
-): FieldReturn<T> {
+): FieldReturn<T> => {
 	if (
 		process.env.NODE_ENV !== 'production'
 		&& (!fieldId || typeof fieldId !== 'string')
@@ -58,4 +56,6 @@ export default function useField<T = any> (
 			ctx.setFieldTouched(fieldId, false);
 		},
 	};
-}
+};
+
+export default useField;

@@ -13,9 +13,9 @@ export interface FieldArrayReturn<T> {
 	swap: (first: number, second: number) => void;
 }
 
-export default function useFieldArray<T = any> (
+const useFieldArray = <T = any>(
 	fieldId: string,
-): FieldArrayReturn<T> {
+): FieldArrayReturn<T> => {
 	if (
 		process.env.NODE_ENV !== 'production'
 		&& (!fieldId || typeof fieldId !== 'string')
@@ -116,4 +116,6 @@ export default function useFieldArray<T = any> (
 			ctx.setFieldError(fieldId, newErrors as any);
 		},
 	};
-}
+};
+
+export default useFieldArray;
