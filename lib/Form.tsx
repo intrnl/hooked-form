@@ -29,7 +29,6 @@ export interface ErrorBag {
 }
 
 export interface CallBag {
-	props?: object;
 	setErrors: (errors: Errors) => void;
 	setFormError: (error: string) => void;
 }
@@ -159,22 +158,21 @@ const HookedForm = <Values extends object>({
 			return emitter._emit('s');
 		}
 
-		return new Promise((resolve) =>
-			resolve(
-				onSubmit(values, {
-					setErrors: (submitErrors: Errors) => {
-						setErrors(e.current = submitErrors);
-					},
-					setFormError: (err: string) => {
-						formErrorState[1](err);
-						emitter._emit('f');
-					},
-				}),
-			)
-		).then(
+		const callbag = {
+			setErrors: (submitErrors: Errors) => {
+				setErrors(e.current = submitErrors);
+			},
+			setFormError: (err: string) => {
+				formErrorState[1](err);
+				emitter._emit('f');
+			},
+		};
+
+		return new Promise((resolve) => resolve(onSubmit(values, callbag))).then(
 			(result: any) => {
 				submittingState[1](false);
 				emitter._emit('s');
+
 				if (onSuccess) {
 					onSuccess(result, { resetForm });
 				}
@@ -182,16 +180,9 @@ const HookedForm = <Values extends object>({
 			(err: Error) => {
 				submittingState[1](false);
 				emitter._emit('s');
+
 				if (onError) {
-					onError(err, {
-						setErrors: (submitErrors: Errors) => {
-							setErrors(e.current = submitErrors);
-						},
-						setFormError: (err: string) => {
-							formErrorState[1](err);
-							emitter._emit('f');
-						},
-					});
+					onError(err, callbag);
 				}
 			},
 		);
