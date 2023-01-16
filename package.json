@@ -1,7 +1,7 @@
 {
 	"name": "@intrnl/hooked-form",
 	"description": "Lightweight form management library for React",
-	"version": "4.3.4",
+	"version": "4.3.5",
 	"author": "intrnl",
 	"license": "MIT",
 	"files": [
@@ -16,7 +16,7 @@
 		"prepublishOnly": "pnpm run build"
 	},
 	"peerDependencies": {
-		"react": "17.0.2"
+		"react": ">=17.0.0"
 	},
 	"devDependencies": {
 		"@types/node": "^18.11.18",
