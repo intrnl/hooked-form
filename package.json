@@ -1,7 +1,7 @@
 {
 	"name": "@intrnl/hooked-form",
 	"description": "Lightweight form management library for React",
-	"version": "4.3.6",
+	"version": "4.3.7",
 	"author": "intrnl",
 	"license": "MIT",
 	"files": [
@@ -9,7 +9,7 @@
 	],
 	"sideEffects": false,
 	"main": "./dist/hooked-form.js",
-	"module": "./dist/hooked-form.module.js",
+	"module": "./dist/hooked-form.esm.js",
 	"types": "./dist/index.d.ts",
 	"scripts": {
 		"build": "tsc && vite build",
