@@ -114,7 +114,6 @@ const HookedForm = <Values extends object>({
 			&& JSON.stringify(errors) !== JSON.stringify(validationErrors)
 		) {
 			setErrors(e.current = validationErrors as Errors);
-			setTouched(t.current = deriveInitial(validationErrors, true));
 
 			emitter._emit(
 				([] as Array<string>).concat(
@@ -148,10 +147,23 @@ const HookedForm = <Values extends object>({
 		if (event && event.preventDefault) {
 			event.preventDefault();
 		}
+
 		submittingState[1](true);
 		emitter._emit('s');
+
 		const fieldErrors = validateForm();
-		setTouched(t.current = deriveInitial(fieldErrors, true));
+		const derivedTouched = deriveInitial(fieldErrors, true);
+
+		if (JSON.stringify(derivedTouched) !== JSON.stringify(touched)) {
+			setTouched(t.current = deriveInitial(fieldErrors, true));
+
+			emitter._emit(
+				([] as Array<string>).concat(
+					deriveKeys(derivedTouched),
+					deriveKeys(touched),
+				),
+			);
+		}
 
 		if (!shouldSubmitWhenInvalid && deriveKeys(fieldErrors).length > 0) {
 			submittingState[1](false);
