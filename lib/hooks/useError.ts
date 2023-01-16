@@ -1,10 +1,6 @@
 import { get } from '../helpers/operations';
 import { useContextEmitter } from './useContextEmitter';
 
-export interface FieldInformation {
-	error: string;
-}
-
 export default function useError (fieldId: string): string | null {
 	if (
 		process.env.NODE_ENV !== 'production'

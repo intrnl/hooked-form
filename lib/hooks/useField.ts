@@ -7,7 +7,11 @@ import {
 } from '../types';
 import { useContextEmitter } from './useContextEmitter';
 
-export interface FieldOperations<T> {
+
+export interface FieldReturn<T> {
+	error: string;
+	touched: boolean;
+	value: T;
 	onBlur: () => void;
 	onChange: (value: T) => void;
 	onFocus: () => void;
@@ -16,7 +20,7 @@ export interface FieldOperations<T> {
 export default function useField<T = any> (
 	fieldId: string,
 	validate?: (value: T) => string | undefined,
-): [FieldOperations<T>, FieldInformation<T>] {
+): FieldReturn<T> {
 	if (
 		process.env.NODE_ENV !== 'production'
 		&& (!fieldId || typeof fieldId !== 'string')
@@ -40,22 +44,18 @@ export default function useField<T = any> (
 		};
 	}, [fieldId]);
 
-	return [
-		{
-			onBlur: () => {
-				ctx.setFieldTouched(fieldId, true);
-			},
-			onChange: (value: T) => {
-				ctx.setFieldValue(fieldId, value);
-			},
-			onFocus: () => {
-				ctx.setFieldTouched(fieldId, false);
-			},
+	return {
+		error: get(ctx.errors, fieldId),
+		touched: get(ctx.touched, fieldId),
+		value: get(ctx.values, fieldId) || '',
+		onBlur: () => {
+			ctx.setFieldTouched(fieldId, true);
 		},
-		{
-			error: get(ctx.errors, fieldId),
-			touched: get(ctx.touched, fieldId),
-			value: get(ctx.values, fieldId) || '',
+		onChange: (value: T) => {
+			ctx.setFieldValue(fieldId, value);
 		},
-	];
+		onFocus: () => {
+			ctx.setFieldTouched(fieldId, false);
+		},
+	};
 }
