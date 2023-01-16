@@ -75,15 +75,15 @@ const Form = <Values extends object>({
 	const isDirty = React.useRef(false);
 	const emitter = React.useMemo(createEmitter, []);
 
-	const { 0: values, 1: setValues } = React.useState<Partial<Values> | object>(
+	const [values, setValues] = React.useState<Partial<Values> | object>(
 		initialValues || EMPTY_OBJ,
 	);
 
-	const { 0: touched, 1: setTouched } = React.useState<
+	const [touched, setTouched] = React.useState<
 		Partial<Touched> | object
 	>((initialErrors && (() => deriveInitial(initialErrors, true))) || EMPTY_OBJ);
 
-	const { 0: errors, 1: setErrors } = React.useState<Partial<Errors> | object>(
+	const [errors, setErrors] = React.useState<Partial<Errors> | object>(
 		initialErrors || EMPTY_OBJ,
 	);
 
