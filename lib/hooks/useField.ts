@@ -23,7 +23,7 @@ export interface UseFieldProps<T> {
 
 const useField = <T = any>(
 	fieldId: string,
-	props: UseFieldProps<T>,
+	props: UseFieldProps<T> = {},
 ): UseFieldReturn<T> => {
 	if (
 		process.env.NODE_ENV !== 'production'
