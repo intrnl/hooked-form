@@ -3,12 +3,16 @@ export interface Source {
 }
 
 export const get = (source: Source, key: any): any => {
-	// eslint-disable-next-line
-	let path = key.replace(/\[("|')?([^\[\]]+)\1\]/g, '.$2').split('.'),
-		index = 0;
+	let path = key.replace(/\[("|')?([^\[\]]+)\1\]/g, '.$2').split('.');
 
-	while (source && path.length > index) {
-		source = source[path[index++]];
+	for (let idx = 0, len = path.length; idx < len; idx++) {
+		let segment = path[idx];
+
+		source = source[segment];
+
+		if (idx !== len - 1 && (typeof source !== 'object' || !source)) {
+			return;
+		}
 	}
 
 	return source;
