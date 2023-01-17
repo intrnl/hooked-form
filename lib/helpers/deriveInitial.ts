@@ -1,19 +1,21 @@
 export const deriveInitial = (
-	value: { [fieldId: string]: any },
+	obj: { [fieldId: string]: any },
 	defaultValue: any,
 ): { [fieldId: string]: any } => {
 	const result: { [fieldId: string]: any } = {};
 
-	for (const key in value) {
-		if (Array.isArray(value[key])) {
-			result[key] = value[key].map((val: any) =>
+	for (const key in obj) {
+		const value = obj[key];
+
+		if (Array.isArray(value)) {
+			result[key] = value.map((val: any) =>
 				typeof val === 'object'
 					? deriveInitial(val, defaultValue)
 					: defaultValue
 			);
 		}
-		else if (value[key] && typeof value[key] === 'object') {
-			result[key] = deriveInitial(value[key], defaultValue);
+		else if (typeof value === 'object' && value) {
+			result[key] = deriveInitial(value, defaultValue);
 		}
 		else {
 			result[key] = defaultValue;

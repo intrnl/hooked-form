@@ -1,24 +1,29 @@
 export const deriveKeys = (
 	obj: { [key: string]: any },
-	parentKey?: string,
-): Array<string> => {
-	parentKey = parentKey || '';
+	parentKey: string = '',
+	accu: string[] = [],
+): string[] => {
+	for (const key in obj) {
+		const value = obj[key];
 
-	return Object.keys(obj).reduce<Array<string>>((acc, key) => {
-		if (Array.isArray(obj[key])) {
-			obj[key].some((v: any, i: number) => {
-				typeof v === 'object' && v
-					? acc.push(...deriveKeys(v, `${parentKey}${key}[${i}].`))
-					: acc.push(`${parentKey}${key}[${i}]`);
-			});
-		}
-		else if (typeof obj[key] === 'object' && obj[key]) {
-			acc.push(...deriveKeys(obj[key], `${parentKey}${key}.`));
-		}
-		else {
-			acc.push(parentKey + key);
-		}
+		accu.push(parentKey + key);
 
-		return acc;
-	}, []);
+		if (Array.isArray(value)) {
+			for (let idx = 0, len = value.length; idx < len; idx++) {
+				const val = value[idx];
+
+				if (typeof val === 'object' && val) {
+					deriveKeys(val, `${parentKey}${key}[${idx}].`, accu);
+				}
+				else {
+					accu.push(`${parentKey}${key}[${idx}]`);
+				}
+			}
+		}
+		else if (typeof value === 'object' && value) {
+			deriveKeys(value, `${parentKey}${key}.`, accu);
+		}
+	}
+
+	return accu;
 };
