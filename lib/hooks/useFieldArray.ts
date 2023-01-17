@@ -13,6 +13,8 @@ export interface UseFieldArrayReturn<T> {
 	swap: (first: number, second: number) => void;
 }
 
+const coerceArray = (value: any) => Array.isArray(value) ? value : [];
+
 const useFieldArray = <T = any>(
 	fieldId: string,
 ): UseFieldArrayReturn<T> => {
@@ -26,18 +28,18 @@ const useFieldArray = <T = any>(
 	}
 
 	const ctx = useContextEmitter(fieldId) as ArrayHookContext;
-	const values: Array<T> = get(ctx.values, fieldId);
+	const values: Array<T> = coerceArray(get(ctx.values, fieldId));
 
 	return {
 		error: get(ctx.errors, fieldId),
 		value: values,
 
 		add: (element: T) => {
-			const value = get(ctx._getValues().current, fieldId) || [];
+			const value = coerceArray(get(ctx._getValues().current, fieldId));
 			ctx.setFieldValue(fieldId, [...value, element]);
 		},
 		insert: (at: number, element: T) => {
-			const value = get(ctx._getValues().current, fieldId) || [];
+			const value = coerceArray(get(ctx._getValues().current, fieldId));
 			const touched = get(ctx._getTouched().current, fieldId) || [];
 			const errors = get(ctx._getErrors().current, fieldId) || [];
 
@@ -50,7 +52,7 @@ const useFieldArray = <T = any>(
 			ctx.setFieldError(fieldId, errors as any);
 		},
 		move: (from: number, to: number) => {
-			const value = get(ctx._getValues().current, fieldId) || [];
+			const value = coerceArray(get(ctx._getValues().current, fieldId));
 			const touched = get(ctx._getTouched().current, fieldId) || [];
 			const errors = get(ctx._getErrors().current, fieldId) || [];
 
@@ -70,7 +72,7 @@ const useFieldArray = <T = any>(
 			ctx.setFieldError(fieldId, newErrors as any);
 		},
 		remove: (index: number) => {
-			const value = get(ctx._getValues().current, fieldId) || [];
+			const value = coerceArray(get(ctx._getValues().current, fieldId));
 			const touched = get(ctx._getTouched().current, fieldId) || [];
 			const errors = get(ctx._getErrors().current, fieldId) || [];
 
@@ -83,7 +85,7 @@ const useFieldArray = <T = any>(
 			ctx.setFieldError(fieldId, errors as any);
 		},
 		replace: (at: number, element: T) => {
-			const value = get(ctx._getValues().current, fieldId) || [];
+			const value = coerceArray(get(ctx._getValues().current, fieldId));
 			const touched = get(ctx._getTouched().current, fieldId) || [];
 			const errors = get(ctx._getErrors().current, fieldId) || [];
 
@@ -96,7 +98,7 @@ const useFieldArray = <T = any>(
 			ctx.setFieldError(fieldId, errors as any);
 		},
 		swap: (from: number, to: number) => {
-			const value = get(ctx._getValues().current, fieldId) || [];
+			const value = coerceArray(get(ctx._getValues().current, fieldId));
 			const touched = get(ctx._getTouched().current, fieldId) || [];
 			const errors = get(ctx._getErrors().current, fieldId) || [];
 
