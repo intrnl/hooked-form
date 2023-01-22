@@ -4,6 +4,9 @@
 	"version": "4.4.0",
 	"author": "intrnl",
 	"license": "MIT",
+	"repository": {
+		"url": "https://codeberg.org/intrnl/hooked-form"
+	},
 	"files": [
 		"dist/"
 	],
