@@ -5,7 +5,7 @@ specifiers:
   '@types/react': 17.0.52
   '@types/react-dom': 17.0.18
   '@vitejs/plugin-react': 3.0.1
-  dprint: 0.34.1
+  dprint: 0.34.4
   react: 17.0.2
   react-dom: 17.0.2
   typescript: 4.9.4
@@ -17,7 +17,7 @@ devDependencies:
   '@types/react': 17.0.52
   '@types/react-dom': 17.0.18
   '@vitejs/plugin-react': 3.0.1_vite@4.0.4
-  dprint: 0.34.1
+  dprint: 0.34.4
   react: 17.0.2
   react-dom: 17.0.2_react@17.0.2
   typescript: 4.9.4
@@ -777,8 +777,8 @@ packages:
       ms: 2.1.2
     dev: true
 
-  /dprint/0.34.1:
-    resolution: {integrity: sha512-uIWfuknDAQlsVEMiUTokbf0C3NtVwDgJsqlvRJXObpmx8UGpMa7940cI7lsiIXIwYHiwIMzWd1bgE4rljNJYEw==}
+  /dprint/0.34.4:
+    resolution: {integrity: sha512-uHSNlASyh9UyISuQA2XlRaZFuhlTMO+G+DfChm6rJ08HyRZRVdA5U9rMhF1psPYleTO1q8sO+Trqt7IKyrNVJw==}
     hasBin: true
     requiresBuild: true
     dependencies:
